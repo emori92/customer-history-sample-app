@@ -47,7 +47,7 @@ new Vue({
       // クリップボードにコピー
       navigator.clipboard.writeText(this.copyText);
       // ページ上にスクロール
-      window.location.href = '/#';
+      // window.location.href = '/#';
     }
   },
 });
