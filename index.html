@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>問合せ管理ツール（サンプル）</title>
+  <!-- cdn -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script> -->
+</head>
+
+<body>
+
+  <div class="container mt-5">
+    <div id="app">
+      <h1 class="mb-5">問合せ内容</h1>
+
+      <!-- content -->
+      <div class="d-flex">
+        <!-- left page -->
+        <div class="container w-50 p-4 bg-light">
+          <textarea id="paragraph" v-model="copyText" class="h-100 w-100 pt-2 px-3"></textarea>
+        </div>
+
+        <!-- right page -->
+        <div class="container w-50 my-5">
+          <div v-for="item of items">
+            <div class="form-content mt-4">
+              <div>
+                <h4>- {{ item.title }}</h4>
+                <!-- radio -->
+                <div v-if="item.type === 'radio'" class="d-inline-flex flex-column">
+                  <label v-for="value of item.values">
+                    <input type="radio" :value="value" v-model="item.text">
+                    {{ value }}
+                  </label>
+                </div>
+                <!-- checkbox -->
+                <div v-else-if="item.type === 'check'" class="d-inline-flex flex-column">
+                  <label v-for="value of item.values">
+                    <input type="checkbox" :value="value" v-model="item.text">
+                    {{ value }}
+                  </label>
+                </div>
+                <!-- textarea -->
+                <div v-else>
+                  <textarea name="item.title" v-model="item.text" class="w-100 h-100 p-1 rounded-lg"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- copy button -->
+      <div class="text-center my-5">
+        <button @click="copy" class="btn btn-lg btn-success">クリップボードにコピーする</button>
+      </div>
+    </div>
+
+    <!-- js -->
+    <script src="main.js"></script>
+</body>
+
+</html>
